@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Week To-Do List</title>
+  <link rel="stylesheet" href="https://use.typekit.net/zxb4ups.css">
+  <style>
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    * {
+      font-family: "europa", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    h1 {
+      font-size: 3em;
+    }
+    li {
+      font-size: 1.5em;
+    }
+    input {
+      height: 25px;
+      width: 25px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Week 6 To-Do List</h1>
+  <ul id="todo-list">
+    <li><input type="checkbox"> Read Berk Chapter 5: Physical Development in Infancy and Toddlerhood </li>
+    <li><input type="checkbox"> Watch <a href="https://www.youtube.com/watch?v=nGTnR3zkKxQ" target="_PARENT"> short video: Why Study Infants? </a></li>
+    <li><input type="checkbox"> Watch video about <a href="https://video-alexanderstreet-com.argo.library.okstate.edu/watch/human-motor-development-the-infant-reflexes" target="_PARENT"> Infant Reflexes </a></li>
+    <li><input type="checkbox"> Watch <a href="https://canvas.okstate.edu/courses/178131/modules/items/5916762" target="_PARENT">Dr. Abel's Childhood Sleep Video </a></li>
+    <li><input type="checkbox"> Watch <a href="https://www.youtube.com/watch?v=bKrllhiG1ls&t=983s" target="_PARENT"> Karen Adolph Motor Development Lecture Video </a></li>
+    <li><input type="checkbox"> Review additional resources in the Week 6 Module</li>
+    <li><input type="checkbox"> Take <a href="https://canvas.okstate.edu/courses/178131/quizzes/443032" target="_PARENT"> Week 6 | Chapter 5 Quiz </a> in Canvas </li>
+    <li><input type="checkbox"> Complete <a href="https://canvas.okstate.edu/courses/178131/discussion_topics/1210178" target="_PARENT"> Discussion assignment on motor development, sleep, and theory </a></li>
+    <li><input type="checkbox"> Complete <a href="https://dremilyabel.com/fall24week6check-in" target="_PARENT"> Weekly 2-minute Check-In </a></li>
+    
+  </ul>
+
+  <script>
+    const todoList = document.getElementById('todo-list');
+
+    // Load checked items from local storage
+    function loadCheckedItems() {
+      for (let i = 0; i < todoList.children.length; i++) {
+        const item = todoList.children[i];
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        const isChecked = localStorage.getItem(`item${i}`) === 'true';
+
+        checkbox.checked = isChecked;
+      }
+    }
+
+    // Save checked items to local storage
+    function saveCheckedItems() {
+      for (let i = 0; i < todoList.children.length; i++) {
+        const item = todoList.children[i];
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        localStorage.setItem(`item${i}`, checkbox.checked);
+      }
+    }
+
+    // Attach event listeners
+    todoList.addEventListener('change', saveCheckedItems);
+
+    // Load checked items when the page loads
+    window.addEventListener('load', loadCheckedItems);
+  </script>
+</body>
+</html>
